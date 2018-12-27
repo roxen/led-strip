@@ -72,18 +72,4 @@ export default class StripContext {
 
     this.firstRun = false;
   }
-
-  // drawLine(x1, x2, color) {
-  //   let start = Math.min(x1, x2);
-  //   let stop = Math.max(x1, x2);
-  //
-  //   let nofLeds = (stop - start) / StripContext.mmPerLed();
-  //
-  //   let startLed = this.mapPositionToLedNo(start);
-  //
-  //   for (let i = 0; i < nofLeds; i++) {
-  //     this.set(startLed + i, color);
-  //   }
-  // }
-  //
 }

@@ -8,7 +8,7 @@ export default class Wave extends StripObject {
     super();
     this.wavelength = 100; // mm
     this.speed = 100; // mm/s
-    this.origin = 0; // source
+    this.origin = 500; // source
     this.colormap = interpolate(['#21FFFF', '#0F00FF']);
 
     this.baseAngle = 0;

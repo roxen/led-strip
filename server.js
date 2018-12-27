@@ -1,4 +1,5 @@
 import express from 'express';
+import RunnerFactory from './RunnerFactory'
 
 const bodyParser = require('body-parser');
 const app = express();
@@ -23,5 +24,9 @@ app.listen(port, () => console.log(`Listening on port ${port}`));
 
 let startRunner = function() {
   console.log("platform: " + process.platform);
+  if (process.platform === "linux") {
+    let runnerFactory = new RunnerFactory();
+    runnerFactory.start();
+  }
 };
 startRunner();

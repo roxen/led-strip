@@ -2,7 +2,7 @@
   "name": "example-create-react-app-express",
   "version": "1.0.0",
   "scripts": {
-    "build": "babel server.js client/src/shared -d dist",
+    "build": "babel server.js client/src/shared client/src/server -d dist",
     "client": "cd client && yarn start",
     "server": "yarn build && nodemon dist/server.js",
     "dev": "concurrently --kill-others-on-fail \"yarn server\" \"yarn client\""
@@ -13,6 +13,8 @@
     "color-interpolate": "^1.0.4",
     "dotstar": "^1.0.0",
     "express": "^4.16.4",
+    "node-gameloop": "^0.1.4",
+    "nodemon": "^1.18.9",
     "pi-spi": "^1.0.3"
   },
   "devDependencies": {
