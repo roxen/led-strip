@@ -5,12 +5,13 @@ import StripContext from "./shared/StripContext";
 
 import LedStrip from "./client/LedStrip";
 import Runner from "./client/Runner";
+import Stage from "./shared/Stage";
 
 class App extends Component {
 
   componentDidMount() {
     let stripContext = new StripContext(this._strip);
-    let runner = new Runner(stripContext);
+    let runner = new Runner(stripContext, new Stage());
     runner.start();
   }
 

@@ -1,10 +1,13 @@
 import express from 'express';
-import RunnerFactory from './RunnerFactory'
+import SPI from "pi-spi";
+import dotstar from "dotstar";
+import Runner from "./Runner";
+import Stage from "./Stage";
+import StripContext from "./StripContext";
 
 const bodyParser = require('body-parser');
 const app = express();
 const port = process.env.PORT || 5000;
-
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
@@ -22,11 +25,19 @@ app.post('/api/world', (req, res) => {
 app.listen(port, () => console.log(`Listening on port ${port}`));
 
 
-let startRunner = function() {
-  console.log("platform: " + process.platform);
+let startRunner = function () {
   if (process.platform === "linux") {
-    let runnerFactory = new RunnerFactory();
-    runnerFactory.start();
+
+    const spi = SPI.initialize('/dev/spidev0.0');
+
+    const ledStrip = new dotstar.Dotstar(spi, {
+      length: StripContext.nofLeds()
+    });
+
+    const stripContext = new StripContext(ledStrip);
+
+    const runner = new Runner(stripContext, new Stage());
+    runner.start();
   }
 };
 startRunner();

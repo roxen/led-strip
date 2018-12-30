@@ -53,23 +53,18 @@ export default class StripContext {
     let startLed = Math.floor(start / StripContext.mmPerLed());
     let stopLed = Math.ceil(stop / StripContext.mmPerLed());
 
-    if (typeof this.firstRun == "undefined") {
-      this.firstRun = true;
-    }
     for (let i = startLed; i < stopLed; i++) {
       if (i >= 0) {
         // How much of current led i covered
         let ledColor = color;
         if (i === startLed || i === stopLed - 1) {
-          let alpha = color.alpha() || 1;
           let factor = (Math.min(stop, (i + 1) * StripContext.mmPerLed()) - Math.max(i * StripContext.mmPerLed(), start)) / StripContext.mmPerLed();
+          let alpha = color.alpha() || 1;
           ledColor = color.alpha(alpha * factor);
         }
 
         this.set(i, ledColor);
       }
     }
-
-    this.firstRun = false;
   }
 }
